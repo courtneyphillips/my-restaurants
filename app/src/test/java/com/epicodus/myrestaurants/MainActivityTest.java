@@ -1,7 +1,6 @@
 package com.epicodus.myrestaurants;
 
-/**
- * Created by staff on 4/18/16.
- */
+@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
+@RunWith(RoboelectricGradleTestRunner.class)
 public class MainActivityTest {
 }
