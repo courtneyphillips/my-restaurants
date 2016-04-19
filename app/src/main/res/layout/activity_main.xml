@@ -25,6 +25,7 @@
         android:layout_marginTop="35dp"
         android:textColor="@color/colorTextIcons"
         android:textSize="40sp"
+        android:id="@+id/appNameTextView"
         android:textStyle="bold" />
 
     <Button
