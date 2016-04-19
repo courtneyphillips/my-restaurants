@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class RestaurantsActivity extends AppCompatActivity {
+    private String[] restaurants = new String[] {"Mi Mero Mole", "Mother's Bistro",
+            "Life of Pie", "Screen Door", "Luc Lac", "Sweet Basil",
+            "Slappy Cakes", "Equinox", "Miss Delta's", "Andina",
+            "Lardo", "Portland City Grill", "Fat Head's Brewery",
+            "Chipotle", "Subway"};
     public static final String TAG = RestaurantsActivity.class.getSimpleName();
     private TextView mLocationTextView;
 
