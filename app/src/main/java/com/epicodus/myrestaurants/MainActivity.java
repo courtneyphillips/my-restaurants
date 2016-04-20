@@ -1,22 +1,21 @@
+package com.epicodus.myrestaurants;
+
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import com.epicodus.myrestaurants.R;
-import com.epicodus.myrestaurants.RestaurantsActivity;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = MainActivity.class.getSimpleName();
-    @Bind(R.id.findRestaurantsButton)
-    Button mFindRestaurantsButton;
-    @Bind(R.id.locationEditText)
-    EditText mLocationEditText;
+    @Bind(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
+    @Bind(R.id.locationEditText) EditText mLocationEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
