@@ -1,17 +1,14 @@
 package com.epicodus.myrestaurants;
 
-import javax.security.auth.callback.Callback;
 
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer;
 import se.akerfeldt.okhttp.signpost.SigningInterceptor;
 
-/**
- * Created by staff on 4/20/16.
- */
 public class YelpService {
     public static void findRestaurants(String location, Callback callback) {
         String CONSUMER_KEY = Constants.YELP_CONSUMER_KEY;
