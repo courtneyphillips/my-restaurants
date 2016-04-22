@@ -24,8 +24,7 @@ import okhttp3.Callback;
 public class RestaurantsActivity extends AppCompatActivity {
     public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
     public static final String TAG = RestaurantsActivity.class.getSimpleName();
-    @Bind(R.id.listView)
-    ListView mListView;
+    @Bind(R.id.listView) ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
