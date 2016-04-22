@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.epicodus.myrestaurants.R;
 import com.epicodus.myrestaurants.models.Restaurant;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -60,6 +61,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
         }
 
         public void bindRestaurant(Restaurant restaurant) {
+            Picasso.with(mContext).load(restaurant.getImageUrl()).into(mRestaurantImageView);
             mNameTextView.setText(restaurant.getName());
             mCategoryTextView.setText(restaurant.getCategories().get(0));
             mRatingTextView.setText("Rating: " + restaurant.getRating() + "/5");
