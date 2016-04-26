@@ -27,6 +27,9 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     private Context mContext;
 
     public RestaurantListAdapter(Context context, ArrayList<Restaurant> restaurants) {
+        private static final int MAX_WIDTH = 200;
+        private static final int MAX_HEIGHT = 200;
+
         mContext = context;
         mRestaurants = restaurants;
     }
