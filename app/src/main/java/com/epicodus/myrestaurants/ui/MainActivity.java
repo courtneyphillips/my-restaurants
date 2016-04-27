@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
+
 //    public static final String TAG = MainActivity.class.getSimpleName();
     @Bind(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
     @Bind(R.id.locationEditText) EditText mLocationEditText;
@@ -38,12 +39,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (v == mFindRestaurantsButton) {
             String location = mLocationEditText.getText().toString();
-            addToSharedPreferences(location);
+            if(!(location).equals("")) {
+                addToSharedPreferences(location);
+            }
             Intent intent = new Intent(MainActivity.this, RestaurantListActivity.class);
-//            intent.putExtra("location", location);
+            intent.putExtra("location", location);
             startActivity(intent);
         }
     }
+
     private void addToSharedPreferences(String location) {
         mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
     }
