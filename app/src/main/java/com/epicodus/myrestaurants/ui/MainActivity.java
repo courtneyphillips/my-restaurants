@@ -49,6 +49,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void saveLocationToFirebase(String location) {
         Firebase searchedLocationRef = new Firebase(Constants.FIREBASE_URL_SEARCHED_LOCATION);
-        searchedLocationRef.setValue(location);
+        searchedLocationRef.push().setValue(location);
     }
 }
