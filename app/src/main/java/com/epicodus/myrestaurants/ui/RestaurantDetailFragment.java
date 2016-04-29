@@ -10,9 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.epicodus.myrestaurants.Constants;
 import com.epicodus.myrestaurants.R;
 import com.epicodus.myrestaurants.models.Restaurant;
+import com.firebase.client.Firebase;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -20,9 +23,6 @@ import org.parceler.Parcels;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class RestaurantDetailFragment extends Fragment implements View.OnClickListener {
     private static final int MAX_WIDTH = 400;
     private static final int MAX_HEIGHT = 300;
@@ -56,6 +56,7 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_restaurant_detail, container, false);
         ButterKnife.bind(this, view);
+        mSaveRestaurantButton.setOnClickListener(this);
 
         Picasso.with(view.getContext())
                 .load(mRestaurant.getImageUrl())
@@ -94,6 +95,11 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
                             + "," + mRestaurant.getLongitude()
                             + "?q=(" + mRestaurant.getName() + ")"));
             startActivity(mapIntent);
+        }
+        if (v == mSaveRestaurantButton) {
+            Firebase ref = new Firebase(Constants.FIREBASE_URL_RESTAURANTS);
+            ref.push().setValue(mRestaurant);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
 }
