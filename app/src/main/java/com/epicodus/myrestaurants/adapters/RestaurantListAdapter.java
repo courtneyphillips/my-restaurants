@@ -23,7 +23,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantViewHolder> {
-
     private ArrayList<Restaurant> mRestaurants = new ArrayList<>();
     private Context mContext;
 

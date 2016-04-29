@@ -19,9 +19,6 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by staff on 4/29/16.
- */
 public class RestaurantViewHolder extends RecyclerView.ViewHolder {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
@@ -30,6 +27,7 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder {
     @Bind(R.id.restaurantNameTextView) TextView mNameTextView;
     @Bind(R.id.categoryTextView) TextView mCategoryTextView;
     @Bind(R.id.ratingTextView) TextView mRatingTextView;
+
     private Context mContext;
     private ArrayList<Restaurant> mRestaurants = new ArrayList<>();
 
