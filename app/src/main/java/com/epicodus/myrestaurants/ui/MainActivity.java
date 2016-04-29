@@ -25,6 +25,8 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = MainActivity.class.getSimpleName();
     private Firebase mSearchedLocationRef;
+    private ValueEventListener mSearchedLocationRefListener;
+
 
 //    private SharedPreferences mSharedPreferences;
 //    private SharedPreferences.Editor mEditor;
@@ -45,11 +47,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFindRestaurantsButton.setOnClickListener(this);
         mSearchedLocationRef = new Firebase(Constants.FIREBASE_URL_SEARCHED_LOCATION);
 
-        mSearchedLocationRef.addValueEventListener(new ValueEventListener() {
+        mSearchedLocationRefListener = mSearchedLocationRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String location = dataSnapshot.getValue().toString();
-                Log.d("Location updated", location);
+                String locations = dataSnapshot.getValue().toString();
+                Log.d("Location updated", locations);
             }
 
             @Override
@@ -57,6 +59,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        mSearchedLocationRef.removeEventListener(mSearchedLocationRefListener);
     }
 
     @Override
