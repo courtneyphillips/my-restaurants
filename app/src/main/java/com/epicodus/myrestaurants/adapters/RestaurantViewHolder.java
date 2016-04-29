@@ -14,6 +14,8 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -21,13 +23,12 @@ import butterknife.ButterKnife;
  * Created by staff on 4/29/16.
  */
 public class RestaurantViewHolder extends RecyclerView.ViewHolder {
-    @Bind(R.id.restaurantImageView)
-    ImageView mRestaurantImageView;
-    @Bind(R.id.restaurantNameTextView)
-    TextView mNameTextView;
+    @Bind(R.id.restaurantImageView) ImageView mRestaurantImageView;
+    @Bind(R.id.restaurantNameTextView) TextView mNameTextView;
     @Bind(R.id.categoryTextView) TextView mCategoryTextView;
     @Bind(R.id.ratingTextView) TextView mRatingTextView;
     private Context mContext;
+    private ArrayList<Restaurant> mRestaurants = new ArrayList<>();
 
     public RestaurantViewHolder(View itemView) {
         super(itemView);
