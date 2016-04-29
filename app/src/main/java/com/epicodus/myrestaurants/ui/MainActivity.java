@@ -17,10 +17,12 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mEditor;
+    private Firebase mSearchedLocationRef;
 
+//    private SharedPreferences mSharedPreferences;
+//    private SharedPreferences.Editor mEditor;
 //    public static final String TAG = MainActivity.class.getSimpleName();
+
     @Bind(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
     @Bind(R.id.locationEditText) EditText mLocationEditText;
 
@@ -30,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mSharedPreferences.edit();
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mEditor = mSharedPreferences.edit();
 
         mFindRestaurantsButton.setOnClickListener(this);
     }
@@ -41,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v == mFindRestaurantsButton) {
             String location = mLocationEditText.getText().toString();
             // if(!(location).equals("")) {
-            //       addToSharedPreferences(location);
-            //   }
+            //   addToSharedPreferences(location);
+            // }
             saveLocationToFirebase(location);
             Intent intent = new Intent(MainActivity.this, RestaurantListActivity.class);
             intent.putExtra("location", location);
