@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.RestaurantViewHolder> {
+public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantViewHolder> {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
 
