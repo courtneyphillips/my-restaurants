@@ -24,7 +24,6 @@ import butterknife.ButterKnife;
 
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantViewHolder> {
 
-
     private ArrayList<Restaurant> mRestaurants = new ArrayList<>();
     private Context mContext;
 
@@ -34,14 +33,14 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantViewHo
     }
 
     @Override
-    public RestaurantListAdapter.RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_list_item, parent, false);
         RestaurantViewHolder viewHolder = new RestaurantViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(RestaurantListAdapter.RestaurantViewHolder holder, int position) {
+    public void onBindViewHolder(RestaurantViewHolder holder, int position) {
         holder.bindRestaurant(mRestaurants.get(position));
     }
 
@@ -49,6 +48,5 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantViewHo
     public int getItemCount() {
         return mRestaurants.size();
     }
-
 
 }
