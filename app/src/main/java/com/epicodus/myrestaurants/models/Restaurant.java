@@ -7,15 +7,15 @@ import java.util.List;
 
 @Parcel
 public class Restaurant {
-    private String name;
-    private String phone;
-    private String website;
-    private double rating;
-    private String imageUrl;
-    private List<String> address = new ArrayList<>();
-    private double latitude;
-    private double longitude;
-    private List<String> categories = new ArrayList<>();
+    String name;
+    String phone;
+    String website;
+    double rating;
+    String imageUrl;
+    List<String> address = new ArrayList<>();
+    double latitude;
+    double longitude;
+    List<String> categories = new ArrayList<>();
 
     // empty constructor needed by the Parceler library:
     public Restaurant() {}
@@ -50,12 +50,14 @@ public class Restaurant {
         return rating;
     }
 
+    public String getImageUrl() { return imageUrl;}
+
     public String getLargeImageUrl(String imageUrl) {
         String largeImageUrl = imageUrl.substring(0, imageUrl.length() - 6).concat("o.jpg");
         return largeImageUrl;
     }
 
-    public ArrayList<String> getAddress() {
+    public List<String> getAddress() {
         return address;
     }
 
@@ -67,7 +69,7 @@ public class Restaurant {
         return longitude;
     }
 
-    public ArrayList<String> getCategories() {
+    public List<String> getCategories() {
         return categories;
     }
 }
