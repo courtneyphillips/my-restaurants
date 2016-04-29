@@ -23,6 +23,9 @@ import butterknife.ButterKnife;
  * Created by staff on 4/29/16.
  */
 public class RestaurantViewHolder extends RecyclerView.ViewHolder {
+    private static final int MAX_WIDTH = 200;
+    private static final int MAX_HEIGHT = 200;
+
     @Bind(R.id.restaurantImageView) ImageView mRestaurantImageView;
     @Bind(R.id.restaurantNameTextView) TextView mNameTextView;
     @Bind(R.id.categoryTextView) TextView mCategoryTextView;
