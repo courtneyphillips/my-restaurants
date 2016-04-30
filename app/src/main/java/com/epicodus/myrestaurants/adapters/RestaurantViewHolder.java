@@ -31,10 +31,11 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder {
     private Context mContext;
     private ArrayList<Restaurant> mRestaurants = new ArrayList<>();
 
-    public RestaurantViewHolder(View itemView) {
+    public RestaurantViewHolder(View itemView, ArrayList<Restaurant> restaurants) {
         super(itemView);
         ButterKnife.bind(this, itemView);
         mContext = itemView.getContext();
+        mRestaurants = restaurants;
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
