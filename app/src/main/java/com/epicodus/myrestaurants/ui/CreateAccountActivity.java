@@ -56,6 +56,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         mFirebaseRef.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
             @Override
             public void onSuccess(Map<String, Object> result) {
+                String uid = result.get("uid").toString();
+                createUserInFirebaseHelper(name, email, uid);
             }
 
             @Override
