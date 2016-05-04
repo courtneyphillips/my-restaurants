@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+    public static final String TAG = LoginActivity.class.getSimpleName();
+
     @Bind(R.id.passwordLoginButton) Button mPasswordLoginButton;
     @Bind(R.id.emailEditText) EditText mEmailEditText;
     @Bind(R.id.passwordEditText) EditText mPasswordEditText;
@@ -28,7 +31,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Firebase mFirebaseRef;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mSharedPreferencesEditor;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onAuthenticated(AuthData authData) {
                 if (authData != null) {
                     String userUid = authData.getUid();
+
+                    String userInfo = authData.toString();
+                    Log.d(TAG, "Currently logged in: " + userInfo);
+
                     mSharedPreferencesEditor.putString(Constants.KEY_UID, userUid).apply();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -96,8 +102,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         showErrorToast(firebaseError.toString());
                 }
             }
-        }
+        });
     }
+
     private void showErrorToast(String message) {
         Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
     }
