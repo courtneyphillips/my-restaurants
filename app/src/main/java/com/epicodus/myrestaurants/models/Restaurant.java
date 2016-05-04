@@ -10,14 +10,13 @@ public class Restaurant {
     String name;
     String phone;
     String website;
-    double rating;
-    String imageUrl;
+    double rating;String imageUrl;
     List<String> address = new ArrayList<>();
     double latitude;
     double longitude;
     List<String> categories = new ArrayList<>();
+    private String pushId;
 
-    // empty constructor needed by the Parceler library:
     public Restaurant() {}
 
     public Restaurant(String name, String phone, String website,
@@ -71,5 +70,13 @@ public class Restaurant {
 
     public List<String> getCategories() {
         return categories;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 }
