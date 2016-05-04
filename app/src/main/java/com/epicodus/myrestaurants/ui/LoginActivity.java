@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epicodus.myrestaurants.Constants;
 import com.epicodus.myrestaurants.R;
@@ -96,5 +97,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         }
+    }
+    private void showErrorToast(String message) {
+        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
     }
 }
