@@ -16,16 +16,16 @@ public class Constants {
     public static final String FIREBASE_URL = BuildConfig.FIREBASE_ROOT_URL;
 
     //Constants used to save zip codes users search:
-    public static final String FIREBASE_URL_SEARCHED_LOCATION = FIREBASE_URL + "/" + FIREBASE_LOCATION_SEARCHED_LOCATION;
     public static final String FIREBASE_LOCATION_SEARCHED_LOCATION = "searchedLocation";
+    public static final String FIREBASE_URL_SEARCHED_LOCATION = FIREBASE_URL + "/" + FIREBASE_LOCATION_SEARCHED_LOCATION;
 
     //Constants used when creating and saving Restaurant objects to Firebase:
     public static final String FIREBASE_LOCATION_RESTAURANTS = "restaurants";
     public static final String FIREBASE_URL_RESTAURANTS = FIREBASE_URL + "/" + FIREBASE_LOCATION_RESTAURANTS;
 
     //Constants used when creating and saving User objects to Firebase:
-    public static final String FIREBASE_URL_USERS = FIREBASE_URL + "/" + FIREBASE_LOCATION_USERS;
     public static final String FIREBASE_LOCATION_USERS = "users";
+    public static final String FIREBASE_URL_USERS = FIREBASE_URL + "/" + FIREBASE_LOCATION_USERS;
     public static final String FIREBASE_PROPERTY_EMAIL = "email";
     public static final String KEY_UID = "UID";
 
