@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     protected void logout() {
         mFirebaseRef.unauth();
+        takeUserToLoginScreenOnUnAuth();
     }
 
     private void takeUserToLoginScreenOnUnAuth() {
