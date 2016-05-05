@@ -107,7 +107,7 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
             Firebase pushRef = userRestaurantsFirebaseRef.push();
             String restaurantPushId = pushRef.getKey();
             mRestaurant.setPushId(restaurantPushId);
-            userRestaurantsFirebaseRef.push().setValue(mRestaurant);
+            userRestaurantsFirebaseRef.setValue(mRestaurant);
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
