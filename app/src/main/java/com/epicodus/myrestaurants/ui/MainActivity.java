@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.epicodus.myrestaurants.Constants;
 import com.epicodus.myrestaurants.R;
@@ -30,6 +31,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Firebase mFirebaseRef;
     @Bind(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
     @Bind(R.id.savedRestaurantsButton) Button mSavedRestaurantsButton;
+    private ValueEventListener mUserRefListener;
+    private Firebase mUserRef;
+    private String mUId;
+    private SharedPreferences mSharedPreferences;
+    @Bind(R.id.welcomeTextView)TextView mWelcomeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFirebaseRef = new Firebase(Constants.FIREBASE_URL);
         mFindRestaurantsButton.setOnClickListener(this);
         mSavedRestaurantsButton.setOnClickListener(this);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mUId = mSharedPreferences.getString(Constants.KEY_UID, null);
+        mUserRef = new Firebase(Constants.FIREBASE_URL_USERS).child(mUId);
     }
 
     @Override
