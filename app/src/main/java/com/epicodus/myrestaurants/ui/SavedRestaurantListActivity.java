@@ -1,5 +1,7 @@
 package com.epicodus.myrestaurants.ui;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +21,7 @@ public class SavedRestaurantListActivity extends AppCompatActivity {
     private Query mQuery;
     private Firebase mFirebaseRestaurantsRef;
     private FirebaseRestaurantListAdapter mAdapter;
+    private SharedPreferences mSharedPreferences;
 
     @Bind(R.id.recyclerView)
     RecyclerView mRecyclerView;
@@ -28,7 +31,7 @@ public class SavedRestaurantListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
-
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mFirebaseRestaurantsRef = new Firebase(Constants.FIREBASE_URL_RESTAURANTS);
 
         setUpFirebaseQuery();
@@ -36,7 +39,8 @@ public class SavedRestaurantListActivity extends AppCompatActivity {
     }
 
     private void setUpFirebaseQuery() {
-        String location = mFirebaseRestaurantsRef.toString();
+        String userUid = mSharedPreferences.getString(Constants.KEY_UID, null);
+        String location = mFirebaseRestaurantsRef.child(userUid).toString();
         mQuery = new Firebase(location);
     }
 
