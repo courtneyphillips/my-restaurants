@@ -1,7 +1,6 @@
 package com.epicodus.myrestaurants.util;
 
-/**
- * Created by staff on 5/5/16.
- */
-public class SimpleItemTouchHelperCallback {
+import android.support.v7.widget.helper.ItemTouchHelper;
+
+public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
 }
