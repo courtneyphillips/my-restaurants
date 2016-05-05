@@ -53,7 +53,7 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mRestaurant = Parcels.unwrap(getArguments().getParcelable("restaurant"));
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
     }
 
