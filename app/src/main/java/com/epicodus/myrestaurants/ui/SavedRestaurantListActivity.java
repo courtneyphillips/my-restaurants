@@ -44,8 +44,7 @@ public class SavedRestaurantListActivity extends AppCompatActivity implements On
     private void setUpFirebaseQuery() {
         String userUid = mSharedPreferences.getString(Constants.KEY_UID, null);
         String location = mFirebaseRestaurantsRef.child(userUid).toString();
-        mQuery = new Firebase(location);
-    }
+        mQuery = new Firebase(location).orderByChild("index");    }
 
     private void setUpRecyclerView() {
         mAdapter = new FirebaseRestaurantListAdapter(mQuery, Restaurant.class, this);
