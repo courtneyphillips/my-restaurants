@@ -38,7 +38,7 @@ public class FirebaseRestaurantListAdapter extends FirebaseRecyclerAdapter<Resta
     }
 
     @Override
-    public void onBindViewHolder(RestaurantViewHolder holder, int position) {
+    public void onBindViewHolder(final RestaurantViewHolder holder, int position) {
         holder.bindRestaurant(getItem(position));
         holder.mRestaurantImageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
