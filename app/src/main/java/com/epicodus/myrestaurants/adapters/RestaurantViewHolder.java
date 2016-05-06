@@ -21,13 +21,17 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class RestaurantViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
-    private static final int MAX_WIDTH = 200;
+        private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
 
-    @Bind(R.id.restaurantImageView) ImageView mRestaurantImageView;
-    @Bind(R.id.restaurantNameTextView) TextView mNameTextView;
-    @Bind(R.id.categoryTextView) TextView mCategoryTextView;
-    @Bind(R.id.ratingTextView) TextView mRatingTextView;
+    @Bind(R.id.restaurantImageView)
+    ImageView mRestaurantImageView;
+    @Bind(R.id.restaurantNameTextView)
+    TextView mNameTextView;
+    @Bind(R.id.categoryTextView)
+    TextView mCategoryTextView;
+    @Bind(R.id.ratingTextView)
+    TextView mRatingTextView;
 
     private Context mContext;
     private ArrayList<Restaurant> mRestaurants = new ArrayList<>();
@@ -65,11 +69,19 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Ite
 
     @Override
     public void onItemSelected() {
-        //add animation
+        itemView.animate()
+                .alpha(0.7f)
+                .scaleX(0.9f)
+                .scaleY(0.9f)
+                .setDuration(500);
     }
 
     @Override
     public void onItemClear() {
-        //add animation
+        itemView.animate()
+                .alpha(1f)
+                .scaleX(1f)
+                .scaleY(1f);
     }
+
 }
