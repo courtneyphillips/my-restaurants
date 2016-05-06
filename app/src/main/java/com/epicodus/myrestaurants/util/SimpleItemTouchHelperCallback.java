@@ -9,4 +9,9 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         mAdapter = adapter;
     }
 
+    @Override
+    public boolean isLongPressDragEnabled() {
+        return true;
+    }
+
 }
