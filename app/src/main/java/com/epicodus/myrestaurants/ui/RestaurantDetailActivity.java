@@ -16,9 +16,6 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by staff on 4/22/16.
- */
 public class RestaurantDetailActivity extends AppCompatActivity {
     @Bind(R.id.viewPager)
     ViewPager mViewPager;
@@ -35,6 +32,6 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         adapterViewPager = new RestaurantPagerAdapter(getSupportFragmentManager(), mRestaurants);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
-        mViewPager.setPageTransformer(true, new ScaleAndFadePageTransformer)
+        mViewPager.setPageTransformer(true, new ScaleAndFadePageTransformer());
     }
 }
