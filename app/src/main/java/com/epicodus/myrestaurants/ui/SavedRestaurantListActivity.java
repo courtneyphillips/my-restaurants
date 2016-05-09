@@ -48,8 +48,10 @@ public class SavedRestaurantListActivity extends AppCompatActivity implements On
 
     private void setUpRecyclerView() {
         mAdapter = new FirebaseRestaurantListAdapter(mQuery, Restaurant.class, this);
+        //In line below, we change 'this' to 'getActivity()' becasue fragments do not have own context:
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
+
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
