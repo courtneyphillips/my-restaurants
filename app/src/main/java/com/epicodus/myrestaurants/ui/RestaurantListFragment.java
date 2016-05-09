@@ -10,6 +10,6 @@ import android.view.ViewGroup;
 
 import com.epicodus.myrestaurants.R;
 
-public class RestaurantListFragment extends Fragment {
+public class RestaurantListFragment extends BaseFragment {
 
 }
