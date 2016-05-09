@@ -38,6 +38,17 @@ public class RestaurantListFragment extends BaseFragment {
         setHasOptionsMenu(true);
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
+        ButterKnife.bind(this, view);
+        String location = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+        if (location != null) {
+            getRestaurants(location);
+        }
+        return view;
+    }
+
     private void getRestaurants(String location) {
         final YelpService yelpService = new YelpService();
 
