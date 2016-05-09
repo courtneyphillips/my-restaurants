@@ -23,4 +23,12 @@ public class RestaurantListFragment extends BaseFragment {
     public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
     private RestaurantListAdapter mAdapter;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Following line instructs fragment to include menu options:
+        setHasOptionsMenu(true);
+    }
+
+
 }
