@@ -91,31 +91,31 @@ public class RestaurantListActivity extends AppCompatActivity {
         mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
     }
 
-    private void getRestaurants(String location) {
-        final YelpService yelpService = new YelpService();
-
-        yelpService.findRestaurants(location, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) {
-                mRestaurants = yelpService.processResults(response);
-
-                RestaurantListActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAdapter = new RestaurantListAdapter(getApplicationContext(), mRestaurants);
-                        mRecyclerView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager =
-                                new LinearLayoutManager(RestaurantListActivity.this);
-                        mRecyclerView.setLayoutManager(layoutManager);
-                        mRecyclerView.setHasFixedSize(true);
-                    }
-                });
-            }
-        });
-    }
+//    private void getRestaurants(String location) {
+//        final YelpService yelpService = new YelpService();
+//
+//        yelpService.findRestaurants(location, new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) {
+//                mRestaurants = yelpService.processResults(response);
+//
+//                RestaurantListActivity.this.runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mAdapter = new RestaurantListAdapter(getApplicationContext(), mRestaurants);
+//                        mRecyclerView.setAdapter(mAdapter);
+//                        RecyclerView.LayoutManager layoutManager =
+//                                new LinearLayoutManager(RestaurantListActivity.this);
+//                        mRecyclerView.setLayoutManager(layoutManager);
+//                        mRecyclerView.setHasFixedSize(true);
+//                    }
+//                });
+//            }
+//        });
+//    }
 }
