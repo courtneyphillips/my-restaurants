@@ -32,8 +32,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class RestaurantListFragment extends BaseFragment {
-    @Bind(R.id.recyclerView)
-    RecyclerView mRecyclerView;
+    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
     private RestaurantListAdapter mAdapter;
 
@@ -55,18 +54,14 @@ public class RestaurantListFragment extends BaseFragment {
         return view;
     }
 
-
     @Override
     // Method is now void, menu inflater is now passed in as argument:
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Call super to inherit method from parent:
         super.onCreateOptionsMenu(menu, inflater);
-
         inflater.inflate(R.menu.menu_search, menu);
-
         MenuItem menuItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
@@ -82,7 +77,6 @@ public class RestaurantListFragment extends BaseFragment {
             }
 
         });
-
     }
 
     @Override
@@ -137,5 +131,4 @@ public class RestaurantListFragment extends BaseFragment {
             }
         });
     }
-
 }
