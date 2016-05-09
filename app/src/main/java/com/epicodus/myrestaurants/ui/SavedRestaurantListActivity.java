@@ -21,12 +21,12 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class SavedRestaurantListActivity extends AppCompatActivity implements OnStartDragListener {
-    private Query mQuery;
-    private Firebase mFirebaseRestaurantsRef;
-    private FirebaseRestaurantListAdapter mAdapter;
-    private SharedPreferences mSharedPreferences;
-    private ItemTouchHelper mItemTouchHelper;
-    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+//    private Query mQuery;
+//    private Firebase mFirebaseRestaurantsRef;
+//    private FirebaseRestaurantListAdapter mAdapter;
+//    private SharedPreferences mSharedPreferences;
+//    private ItemTouchHelper mItemTouchHelper;
+//    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
