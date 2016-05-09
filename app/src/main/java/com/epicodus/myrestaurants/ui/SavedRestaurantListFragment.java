@@ -69,7 +69,8 @@ public class SavedRestaurantListFragment extends BaseFragment implements OnStart
     }
 
     @Override
-    protected void onPause() {
+    // method should now be public
+    public void onPause() {
         super.onPause();
         String uid = mSharedPreferences.getString(Constants.KEY_UID, null);
         for (Restaurant restaurant : mAdapter.getItems()) {
