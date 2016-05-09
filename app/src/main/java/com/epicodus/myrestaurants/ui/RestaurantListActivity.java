@@ -32,12 +32,12 @@ import okhttp3.Callback;
 
 public class RestaurantListActivity extends AppCompatActivity {
 
-    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mEditor;
-    private String mRecentAddress;
-    private RestaurantListAdapter mAdapter;
-    public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
+//    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+//    private SharedPreferences mSharedPreferences;
+//    private SharedPreferences.Editor mEditor;
+//    private String mRecentAddress;
+//    private RestaurantListAdapter mAdapter;
+//    public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
     public static final String TAG = RestaurantListActivity.class.getSimpleName();
 
     @Override
@@ -46,12 +46,12 @@ public class RestaurantListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
-
-        if (mRecentAddress != null) {
-            getRestaurants(mRecentAddress);
-        }
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+//
+//        if (mRecentAddress != null) {
+//            getRestaurants(mRecentAddress);
+//        }
     }
 
     @Override
@@ -60,8 +60,8 @@ public class RestaurantListActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_search, menu);
         ButterKnife.bind(this);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mSharedPreferences.edit();
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mEditor = mSharedPreferences.edit();
 
         MenuItem menuItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
