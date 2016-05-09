@@ -4,11 +4,16 @@ package com.epicodus.myrestaurants.ui;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.epicodus.myrestaurants.Constants;
 import com.epicodus.myrestaurants.R;
@@ -46,6 +51,46 @@ public class RestaurantListFragment extends BaseFragment {
         }
         return view;
     }
+
+    @Override
+    // Method is now void, menu inflater is now passed in as argument:
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // Call super to inherit method from parent:
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_search, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                addToSharedPreferences(query);
+                getRestaurants(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Switch statement added to include both search and logout functionality in menu:
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                logout();
+                return true;
+            case R.id.action_search:
+                return true;
+            default:
+                break;
+        }
+
+        return false;
+    }
+
 
     public void getRestaurants(String location) {
         final YelpService yelpService = new YelpService();
