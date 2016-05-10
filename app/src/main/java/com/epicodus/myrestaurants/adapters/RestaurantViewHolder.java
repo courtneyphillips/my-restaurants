@@ -42,35 +42,48 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Ite
     private Integer mPosition;
 
     public RestaurantViewHolder(View itemView, ArrayList<Restaurant> restaurants) {
+
         super(itemView);
         ButterKnife.bind(this, itemView);
+
         mContext = itemView.getContext();
         mRestaurants = restaurants;
+        mOrientation = itemView.getResources().getConfiguration().orientation;
+
+        if (mOrientation == Configuration.ORIENTATION_LANDSCAPE){
+            createDetailFragment(0);
+        }
 
         itemView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+
                 mPosition = getLayoutPosition();
 
                 if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    RestaurantDetailFragment detailFragment = RestaurantDetailFragment.newInstance(mRestaurants, mPosition);
-                    FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.restaurantDetailContainer, detailFragment);
-                    ft.commit();
+                    createDetailFragment(mPosition);
                 } else {
                     Intent intent = new Intent(mContext, RestaurantDetailActivity.class);
                     intent.putExtra(Constants.EXTRA_KEY_POSITION, mPosition.toString());
                     intent.putExtra(Constants.EXTRA_KEY_RESTAURANTS, Parcels.wrap(mRestaurants));
                     mContext.startActivity(intent);
                 }
+
             }
 
         });
+
+    }
+
+    private void createDetailFragment(int position){
+        RestaurantDetailFragment detailFragment = RestaurantDetailFragment.newInstance(mRestaurants, position);
+        FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.restaurantDetailContainer, detailFragment);
+        ft.commit();
     }
 
     public void bindRestaurant(Restaurant restaurant) {
-        mOrientation = itemView.getResources().getConfiguration().orientation;
 
         Picasso.with(mContext)
                 .load(restaurant.getImageUrl())
