@@ -28,18 +28,18 @@ public class SavedRestaurantListActivity extends AppCompatActivity implements On
 //    private ItemTouchHelper mItemTouchHelper;
 //    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurants);
-        ButterKnife.bind(this);
-
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mFirebaseRestaurantsRef = new Firebase(Constants.FIREBASE_URL_RESTAURANTS);
-
-        setUpFirebaseQuery();
-        setUpRecyclerView();
-    }
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_restaurants);
+//        ButterKnife.bind(this);
+//
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mFirebaseRestaurantsRef = new Firebase(Constants.FIREBASE_URL_RESTAURANTS);
+//
+//        setUpFirebaseQuery();
+//        setUpRecyclerView();
+//    }
 
     private void setUpFirebaseQuery() {
         String userUid = mSharedPreferences.getString(Constants.KEY_UID, null);
@@ -50,6 +50,7 @@ public class SavedRestaurantListActivity extends AppCompatActivity implements On
         mAdapter = new FirebaseRestaurantListAdapter(mQuery, Restaurant.class, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
+
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
