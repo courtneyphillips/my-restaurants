@@ -61,6 +61,7 @@ public class RestaurantListFragment extends BaseFragment {
         MenuItem menuItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
             @Override
             public boolean onQueryTextSubmit(String query) {
                 addToSharedPreferences(query);
@@ -72,6 +73,7 @@ public class RestaurantListFragment extends BaseFragment {
             public boolean onQueryTextChange(String newText) {
                 return false;
             }
+
         });
     }
 
