@@ -42,6 +42,7 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Ite
     private Integer mPosition;
 
     public RestaurantViewHolder(View itemView, ArrayList<Restaurant> restaurants) {
+
         super(itemView);
         ButterKnife.bind(this, itemView);
 
@@ -57,6 +58,7 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Ite
 
             @Override
             public void onClick(View v) {
+
                 mPosition = getLayoutPosition();
 
                 if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -67,9 +69,11 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Ite
                     intent.putExtra(Constants.EXTRA_KEY_RESTAURANTS, Parcels.wrap(mRestaurants));
                     mContext.startActivity(intent);
                 }
+
             }
 
         });
+
     }
 
     private void createDetailFragment(int position){
@@ -80,7 +84,6 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Ite
     }
 
     public void bindRestaurant(Restaurant restaurant) {
-        mOrientation = itemView.getResources().getConfiguration().orientation;
 
         Picasso.with(mContext)
                 .load(restaurant.getImageUrl())
