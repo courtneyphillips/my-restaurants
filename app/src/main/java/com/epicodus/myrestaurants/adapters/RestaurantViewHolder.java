@@ -60,10 +60,7 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Ite
                 mPosition = getLayoutPosition();
 
                 if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    RestaurantDetailFragment detailFragment = RestaurantDetailFragment.newInstance(mRestaurants, mPosition);
-                    FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.restaurantDetailContainer, detailFragment);
-                    ft.commit();
+                    createDetailFragment(mPosition);
                 } else {
                     Intent intent = new Intent(mContext, RestaurantDetailActivity.class);
                     intent.putExtra(Constants.EXTRA_KEY_POSITION, mPosition.toString());
