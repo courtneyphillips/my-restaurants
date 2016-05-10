@@ -75,6 +75,13 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Ite
         });
     }
 
+    private void createDetailFragment(int position){
+        RestaurantDetailFragment detailFragment = RestaurantDetailFragment.newInstance(mRestaurants, position);
+        FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.restaurantDetailContainer, detailFragment);
+        ft.commit();
+    }
+
     public void bindRestaurant(Restaurant restaurant) {
         mOrientation = itemView.getResources().getConfiguration().orientation;
 
