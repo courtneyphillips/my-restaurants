@@ -12,19 +12,31 @@ import com.epicodus.myrestaurants.Constants;
 import com.epicodus.myrestaurants.R;
 import com.epicodus.myrestaurants.adapters.FirebaseRestaurantListAdapter;
 import com.epicodus.myrestaurants.models.Restaurant;
+import com.epicodus.myrestaurants.util.OnRestaurantSelectedListener;
 import com.epicodus.myrestaurants.util.OnStartDragListener;
 import com.epicodus.myrestaurants.util.SimpleItemTouchHelperCallback;
 import com.firebase.client.Firebase;
 import com.firebase.client.Query;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class SavedRestaurantListActivity extends AppCompatActivity {
+public class SavedRestaurantListActivity extends AppCompatActivity implements OnRestaurantSelectedListener {
+    private Integer mPosition;
+    ArrayList<Restaurant> mRestaurants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_restaurant_list);
     }
+
+    @Override
+    public void onRestaurantSelected(Integer position, ArrayList<Restaurant> restaurants) {
+        mPosition = position;
+        mRestaurants = restaurants;
+    }
+
 }
