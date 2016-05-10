@@ -44,8 +44,14 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Ite
     public RestaurantViewHolder(View itemView, ArrayList<Restaurant> restaurants) {
         super(itemView);
         ButterKnife.bind(this, itemView);
+
         mContext = itemView.getContext();
         mRestaurants = restaurants;
+        mOrientation = itemView.getResources().getConfiguration().orientation;
+
+        if (mOrientation == Configuration.ORIENTATION_LANDSCAPE){
+            createDetailFragment(0);
+        }
 
         itemView.setOnClickListener(new View.OnClickListener() {
 
