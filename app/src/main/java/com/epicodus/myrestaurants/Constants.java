@@ -30,4 +30,7 @@ public class Constants {
     public static final String KEY_UID = "UID";
     public static final String KEY_USER_EMAIL = "email";
 
+    public static final String EXTRA_KEY_POSITION = "position";
+    public static final String EXTRA_KEY_RESTAURANTS = "restaurants";
+
 }
