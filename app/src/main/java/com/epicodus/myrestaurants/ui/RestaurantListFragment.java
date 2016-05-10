@@ -13,7 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
+import android.support.v7.widget.SearchView;
 
 import com.epicodus.myrestaurants.Constants;
 import com.epicodus.myrestaurants.R;
