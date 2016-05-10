@@ -47,7 +47,7 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
     private Integer mPosition;
     private ArrayList<Restaurant> mRestaurants;
 
-    public static RestaurantDetailFragment newInstance(Restaurant restuarant) {
+    public static RestaurantDetailFragment newInstance(ArrayList<Restaurant> restaurants, Integer position) {
         RestaurantDetailFragment restaurantDetailFragment = new RestaurantDetailFragment();
         Bundle args = new Bundle();
 
