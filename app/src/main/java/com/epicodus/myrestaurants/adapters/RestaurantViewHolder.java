@@ -40,21 +40,23 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Ite
         ButterKnife.bind(this, itemView);
         mContext = itemView.getContext();
         mRestaurants = restaurants;
+
         itemView.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                int itemPosition = getLayoutPosition();
+                mPosition = getLayoutPosition();
                 Intent intent = new Intent(mContext, RestaurantDetailActivity.class);
                 intent.putExtra("position", itemPosition + "");
                 intent.putExtra("restaurants", Parcels.wrap(mRestaurants));
                 mContext.startActivity(intent);
             }
+
         });
     }
 
     public void bindRestaurant(Restaurant restaurant) {
-        Picasso.with(mContext).load(restaurant.getImageUrl()).into(mRestaurantImageView);
-
+        mOrientation = itemView.getResources().getConfiguration().orientation;
         Picasso.with(mContext)
                 .load(restaurant.getImageUrl())
                 .resize(MAX_WIDTH, MAX_HEIGHT)
