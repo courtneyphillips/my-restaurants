@@ -1,6 +1,7 @@
 package com.epicodus.myrestaurants.ui;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import com.epicodus.myrestaurants.Constants;
 import com.epicodus.myrestaurants.R;
 import com.epicodus.myrestaurants.adapters.FirebaseRestaurantListAdapter;
 import com.epicodus.myrestaurants.models.Restaurant;
+import com.epicodus.myrestaurants.util.OnRestaurantSelectedListener;
 import com.epicodus.myrestaurants.util.OnStartDragListener;
 import com.epicodus.myrestaurants.util.SimpleItemTouchHelperCallback;
 import com.firebase.client.Firebase;
@@ -28,6 +30,17 @@ public class SavedRestaurantListFragment extends BaseFragment implements OnStart
     private FirebaseRestaurantListAdapter mAdapter;
     private ItemTouchHelper mItemTouchHelper;
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    OnRestaurantSelectedListener mRestaurantSelectedListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mRestaurantSelectedListener = (OnRestaurantSelectedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + e.getMessage());
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,7 +64,7 @@ public class SavedRestaurantListFragment extends BaseFragment implements OnStart
     }
 
     private void setUpRecyclerView() {
-        mAdapter = new FirebaseRestaurantListAdapter(mQuery, Restaurant.class, this);
+        mAdapter = new FirebaseRestaurantListAdapter(mQuery, Restaurant.class, this, mRestaurantSelectedListener);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mAdapter);
 
