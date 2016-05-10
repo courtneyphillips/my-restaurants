@@ -41,4 +41,10 @@ public class RestaurantListActivity extends AppCompatActivity implements OnResta
         setContentView(R.layout.activity_restaurants);
     }
 
+    @Override
+    public void onRestaurantSelected(Integer position, ArrayList<Restaurant> restaurants) {
+        mPosition = position;
+        mRestaurants = restaurants;
+    }
+
 }
