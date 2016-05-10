@@ -1,7 +1,10 @@
 package com.epicodus.myrestaurants.util;
 
-/**
- * Created by staff on 5/10/16.
- */
-public class OnRestaurantSelectedListener {
+import com.epicodus.myrestaurants.models.Restaurant;
+
+import java.util.ArrayList;
+
+public interface OnRestaurantSelectedListener {
+    public void onRestaurantSelected(Integer position, ArrayList<Restaurant> restaurants);
+
 }

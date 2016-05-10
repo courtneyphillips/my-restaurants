@@ -20,6 +20,7 @@ import com.epicodus.myrestaurants.R;
 import com.epicodus.myrestaurants.adapters.RestaurantListAdapter;
 import com.epicodus.myrestaurants.models.Restaurant;
 import com.epicodus.myrestaurants.services.YelpService;
+import com.epicodus.myrestaurants.util.OnRestaurantSelectedListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,7 +31,9 @@ import okhttp3.Call;
 import okhttp3.Response;
 import okhttp3.Callback;
 
-public class RestaurantListActivity extends AppCompatActivity {
+public class RestaurantListActivity extends AppCompatActivity implements OnRestaurantSelectedListener {
+    private Integer mPosition;
+    ArrayList<Restaurant> mRestaurants;
 
  @Override
    protected void onCreate(Bundle savedInstanceState) {
