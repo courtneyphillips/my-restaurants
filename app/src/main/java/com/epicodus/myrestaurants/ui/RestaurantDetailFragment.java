@@ -27,6 +27,7 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -181,5 +182,18 @@ public class RestaurantDetailFragment extends BaseFragment implements View.OnCli
             mImageLabel.setImageBitmap(imageBitmap);
             encodeBitmapAndSaveToFirebase(imageBitmap);
         }
+    }
+
+    public void encodeBitmapAndSaveToFirebase(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+
+        byte[] b = baos.toByteArray();
+        String imageEncoded = com.firebase.client.utilities.Base64.encodeBytes(b);
+        Firebase restaurantRef = new Firebase(Constants.FIREBASE_URL_RESTAURANTS)
+                .child(mUid)
+                .child(mRestaurant.getPushId())
+                .child("imageUrl");
+        restaurantRef.setValue(imageEncoded);
     }
 }
