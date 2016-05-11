@@ -62,7 +62,7 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Vie
     }
 
     private void createDetailFragment(int position){
-        RestaurantDetailFragment detailFragment = RestaurantDetailFragment.newInstance(mRestaurants, position);
+        RestaurantDetailFragment detailFragment = RestaurantDetailFragment.newInstance(mRestaurants, position, mContext.getClass().getSimpleName());
         FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.restaurantDetailContainer, detailFragment);
         ft.commit();
