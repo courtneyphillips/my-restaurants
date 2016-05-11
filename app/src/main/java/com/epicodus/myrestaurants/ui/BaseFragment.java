@@ -14,6 +14,7 @@ public class BaseFragment extends Fragment {
     public SharedPreferences mSharedPreferences;
     public SharedPreferences.Editor mSharedPreferencesEditor;
     public Firebase mFirebaseRef;
+    public String mUid;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,8 @@ public class BaseFragment extends Fragment {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mSharedPreferencesEditor = mSharedPreferences.edit();
         mFirebaseRef = new Firebase(Constants.FIREBASE_URL);
+        mUid = mSharedPreferences.getString(Constants.KEY_UID, null);
+
     }
 
     public void addToSharedPreferences(String location) {
