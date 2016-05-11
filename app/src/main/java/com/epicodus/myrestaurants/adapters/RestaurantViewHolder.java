@@ -15,6 +15,7 @@ import com.epicodus.myrestaurants.R;
 import com.epicodus.myrestaurants.models.Restaurant;
 import com.epicodus.myrestaurants.ui.RestaurantDetailActivity;
 import com.epicodus.myrestaurants.ui.RestaurantDetailFragment;
+import com.epicodus.myrestaurants.ui.SavedRestaurantListActivity;
 import com.epicodus.myrestaurants.util.ItemTouchHelperViewHolder;
 import com.epicodus.myrestaurants.util.OnRestaurantSelectedListener;
 import com.squareup.picasso.Picasso;
@@ -108,6 +109,13 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Vie
             Intent intent = new Intent(mContext, RestaurantDetailActivity.class);
             intent.putExtra(Constants.EXTRA_KEY_POSITION, mPosition);
             intent.putExtra(Constants.EXTRA_KEY_RESTAURANTS, Parcels.wrap(mRestaurants));
+
+            if (mContext.getClass().getSimpleName().equals(SavedRestaurantListActivity.class.getSimpleName())) {
+                intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_SAVED);
+            } else {
+                intent.putExtra(Constants.KEY_SOURCE, Constants.SOURCE_FIND);
+            }
+
             mContext.startActivity(intent);
         }
     }
