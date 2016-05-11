@@ -27,26 +27,22 @@ import java.util.HashMap;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     public static final String TAG = MainActivity.class.getSimpleName();
-    private Firebase mFirebaseRef;
     @Bind(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
     @Bind(R.id.savedRestaurantsButton) Button mSavedRestaurantsButton;
     private ValueEventListener mUserRefListener;
     private Firebase mUserRef;
     private String mUId;
-    private SharedPreferences mSharedPreferences;
     @Bind(R.id.welcomeTextView)TextView mWelcomeTextView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mFirebaseRef = new Firebase(Constants.FIREBASE_URL);
         mFindRestaurantsButton.setOnClickListener(this);
         mSavedRestaurantsButton.setOnClickListener(this);
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mUId = mSharedPreferences.getString(Constants.KEY_UID, null);
         mUserRef = new Firebase(Constants.FIREBASE_URL_USERS).child(mUId);
 
