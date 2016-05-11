@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class RestaurantViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
+public class RestaurantViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ItemTouchHelperViewHolder {
 
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
@@ -45,40 +45,19 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Ite
 
 
     public RestaurantViewHolder(View itemView, ArrayList<Restaurant> restaurants, OnRestaurantSelectedListener restaurantSelectedListener) {
-
         super(itemView);
         ButterKnife.bind(this, itemView);
-
-        mContext = itemView.getContext();
         mRestaurants = restaurants;
-        mRestaurantSelectedListener = restaurantSelectedListener;
+        mContext = itemView.getContext();
         mOrientation = itemView.getResources().getConfiguration().orientation;
+        mRestaurantSelectedListener = restaurantSelectedListener;
+
 
         if (mOrientation == Configuration.ORIENTATION_LANDSCAPE){
             createDetailFragment(0);
         }
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                mPosition = getLayoutPosition();
-                mRestaurantSelectedListener.onRestaurantSelected(mPosition, mRestaurants);
-
-                if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    createDetailFragment(mPosition);
-                } else {
-                    Intent intent = new Intent(mContext, RestaurantDetailActivity.class);
-                    intent.putExtra(Constants.EXTRA_KEY_POSITION, mPosition.toString());
-                    intent.putExtra(Constants.EXTRA_KEY_RESTAURANTS, Parcels.wrap(mRestaurants));
-                    mContext.startActivity(intent);
-                }
-
-            }
-
-        });
-
+        itemView.setOnClickListener(this);
     }
 
     private void createDetailFragment(int position){
@@ -118,4 +97,18 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Ite
                 .scaleY(1f);
     }
 
+    @Override
+    public void onClick(View v) {
+        mPosition = getLayoutPosition();
+        mRestaurantSelectedListener.onRestaurantSelected(mPosition, mRestaurants);
+
+        if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+            createDetailFragment(mPosition);
+        } else {
+            Intent intent = new Intent(mContext, RestaurantDetailActivity.class);
+            intent.putExtra(Constants.EXTRA_KEY_POSITION, mPosition);
+            intent.putExtra(Constants.EXTRA_KEY_RESTAURANTS, Parcels.wrap(mRestaurants));
+            mContext.startActivity(intent);
+        }
+    }
 }

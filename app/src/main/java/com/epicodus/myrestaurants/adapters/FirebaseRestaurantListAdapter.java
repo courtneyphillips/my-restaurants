@@ -31,13 +31,12 @@ public class FirebaseRestaurantListAdapter extends FirebaseRecyclerAdapter<Resta
         super(query, itemClass);
         mDragStartListener = dragStartListener;
         mRestaurantSelectedListener = restaurantSelectedListener;
-
     }
 
     @Override
     public RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_list_item_drag, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.restaurant_list_item_drag, parent, false);
         return new RestaurantViewHolder(view, getItems(), mRestaurantSelectedListener);
     }
 

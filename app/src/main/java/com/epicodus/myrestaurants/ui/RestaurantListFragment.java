@@ -121,21 +121,12 @@ public class RestaurantListFragment extends BaseFragment {
                 mRestaurants = yelpService.processResults(response);
 
                 getActivity().runOnUiThread(new Runnable() {
-                    // Line above states 'getActivity()' instead of previous 'RestaurantListActivity.this'
-                    // because fragments do not have own context, and must inherit from corresponding activity.
+
                     @Override
                     public void run() {
                         mAdapter = new RestaurantListAdapter(mRestaurants, mOnRestaurantSelectedListener);
-                        // Line above states `getActivity()` instead of previous
-                        // 'getApplicationContext()' because fragments do not have own context,
-                        // must instead inherit it from corresponding activity.
-                        mAdapter = new RestaurantListAdapter(mRestaurants, mOnRestaurantSelectedListener);
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                        // Line above states 'new LinearLayoutManager(getActivity());' instead of previous
-                        // 'new LinearLayoutManager(RestaurantListActivity.this);' when method resided
-                        // in RestaurantListActivity because Fragments do not have context
-                        // and must instead inherit from corresponding activity.
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
                     }
