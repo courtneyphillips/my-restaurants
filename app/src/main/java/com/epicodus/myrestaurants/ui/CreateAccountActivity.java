@@ -25,7 +25,7 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener {
+public class CreateAccountActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = CreateAccountActivity.class.getSimpleName();
     @Bind(R.id.createUserButton) Button mCreateUserButton;
     @Bind(R.id.nameEditText) EditText mNameEditText;
@@ -33,21 +33,13 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     @Bind(R.id.passwordEditText) EditText mPasswordEditText;
     @Bind(R.id.confirmPasswordEditText) EditText mConfirmPasswordEditText;
     @Bind(R.id.loginTextView) TextView mLoginTextView;
-    private Firebase mFirebaseRef;
-    private SharedPreferences.Editor mSharedPreferencesEditor;
-    private SharedPreferences mSharedPreferences;
-
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
         ButterKnife.bind(this);
-        mFirebaseRef = new Firebase(Constants.FIREBASE_URL);
         mCreateUserButton.setOnClickListener(this);
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mSharedPreferencesEditor = mSharedPreferences.edit();
-
     }
 
     @Override
@@ -56,6 +48,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             createNewUser();
         }
     }
+
     public void createNewUser() {
         final String name = mNameEditText.getText().toString();
         final String email = mEmailEditText.getText().toString();
