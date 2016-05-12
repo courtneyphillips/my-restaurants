@@ -3,6 +3,7 @@ package com.epicodus.myrestaurants.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +23,7 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -44,7 +46,6 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Vie
     private Integer mPosition;
     private OnRestaurantSelectedListener mRestaurantSelectedListener;
 
-
     public RestaurantViewHolder(View itemView, ArrayList<Restaurant> restaurants, OnRestaurantSelectedListener restaurantSelectedListener) {
         super(itemView);
         ButterKnife.bind(this, itemView);
@@ -61,7 +62,7 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Vie
         itemView.setOnClickListener(this);
     }
 
-    private void createDetailFragment(int position){
+        private void createDetailFragment(int position){
         RestaurantDetailFragment detailFragment = RestaurantDetailFragment.newInstance(mRestaurants, position, mContext.getClass().getSimpleName());
         FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.restaurantDetailContainer, detailFragment);
@@ -70,11 +71,20 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Vie
 
     public void bindRestaurant(Restaurant restaurant) {
 
-        Picasso.with(mContext)
-                .load(restaurant.getImageUrl())
-                .resize(MAX_WIDTH, MAX_HEIGHT)
-                .centerCrop()
-                .into(mRestaurantImageView);
+        if (!restaurant.getImageUrl().contains("http")) {
+            try {
+                Bitmap image = decodeFromFirebaseBase64(restaurant.getImageUrl());
+                mRestaurantImageView.setImageBitmap(image);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Picasso.with(mContext)
+                    .load(restaurant.getImageUrl())
+                    .resize(MAX_WIDTH, MAX_HEIGHT)
+                    .centerCrop()
+                    .into(mRestaurantImageView);
+        }
 
         mNameTextView.setText(restaurant.getName());
         mCategoryTextView.setText(restaurant.getCategories().get(0));
