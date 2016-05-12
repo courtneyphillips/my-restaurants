@@ -4,6 +4,7 @@ package com.epicodus.myrestaurants.ui;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -204,5 +205,10 @@ public class RestaurantDetailFragment extends BaseFragment implements View.OnCli
                 .child(mRestaurant.getPushId())
                 .child("imageUrl");
         restaurantRef.setValue(imageEncoded);
+    }
+
+    public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
+        byte[] decodedByte = com.firebase.client.utilities.Base64.decode(image);
+        return BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
     }
 }
